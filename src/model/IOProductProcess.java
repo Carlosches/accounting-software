@@ -4,7 +4,7 @@ public class IOProductProcess {
 
 	private Status status;
 	private int units;
-	
+	private double iOPP;
 	
 	
 	/**
@@ -24,6 +24,7 @@ public class IOProductProcess {
 	 */
 	public void setStatus(Status status) {
 		this.status = status;
+		iOPP = status.getMDvalue() + status.getCIFvalue() + status.getMODvalue() + status.getCTvalue();
 	}
 	/**
 	 * @return the units
@@ -37,7 +38,10 @@ public class IOProductProcess {
 	public void setUnits(int units) {
 		this.units = units;
 	}
-	
+	public double getiOPP() {
+		return iOPP;
+	}
+
 	
 	
 }

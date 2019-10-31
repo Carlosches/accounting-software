@@ -2,94 +2,92 @@ package model;
 
 public class PhysicalFlow {
 	
-	private IOProductProcess IOPP;
-	private IFProductProcess IFPP;
+	private IOProductProcess iOPP;
+	private IFProductProcess iFPP;
 	private Started started;
 	
-	private int finished;
-	private int previous;
-	private int startedAndFinished;
-	
-	
+	private int finishedUnits;
+	private int previousUnits;
+	private int startedAndFinishedUnits;
+		
 	/**
 	 * @param iOPP
 	 * @param iFPP
 	 * @param started
 	 */
-	public PhysicalFlow(int ioPP, int ifPP, int st, int finished) {
+	public PhysicalFlow(int iOPP, int iFPP, int st, int finished, int previous, int startedFinished) {
 		
-		if(ioPP!=-1)
-			IOPP = new IOProductProcess(ioPP);
-		if(ifPP!=-1)
-			IFPP = new IFProductProcess(ifPP);
+		if(iOPP!=-1)
+			this.iOPP = new IOProductProcess(iOPP);
+		if(iFPP!=-1)
+			this.iFPP = new IFProductProcess(iFPP);
 		if(st != -1)
 			started = new Started(st);
-		this.finished = finished;
+		this.finishedUnits = finished;
+		this.previousUnits = previous;
+		this.startedAndFinishedUnits = startedFinished;
 	}
-	
-	
-	
 	
 	public boolean check() {
 		boolean valid = false;
-		if(IFPP == null && IOPP!=null && started != null && finished!=-1 ) {
-			int unit = IOPP.getUnits()+started.getUnits()-finished;
-			IFPP = new IFProductProcess(unit);
+		if(iOPP!=null && started != null && finishedUnits!=-1 ) {
+			int unit = iOPP.getUnits()+started.getUnits()-finishedUnits;
+			iFPP = new IFProductProcess(unit);
+			previousUnits = iOPP.getUnits();
+			startedAndFinishedUnits = finishedUnits - previousUnits;
 			valid = true;
-		}else if(IOPP == null && IFPP!=null && started != null && finished!=-1 ) {
-			int unit = IFPP.getUnits()-started.getUnits()+finished;
-			IOPP = new IOProductProcess(unit);
+		}else if(iOPP!=null && started != null && iFPP!=null ) {
+			finishedUnits = iOPP.getUnits()+started.getUnits()-iFPP.getUnits();
+			previousUnits = iOPP.getUnits();
+			startedAndFinishedUnits = finishedUnits - previousUnits;
 			valid = true;
-		}else if(IFPP != null && IOPP!=null && started == null && finished!=-1 ) {
-			int unit = IFPP.getUnits()-IOPP.getUnits()+finished;
+		}else if(iFPP!=null && started != null && finishedUnits!=-1 ) {
+			int unit = iFPP.getUnits()-started.getUnits()+finishedUnits;
+			iOPP = new IOProductProcess(unit);
+			previousUnits = unit;
+			startedAndFinishedUnits = finishedUnits - previousUnits;
+			valid = true;
+		}else if(iFPP != null && iOPP!=null && finishedUnits!=-1 ) {
+			int unit = iFPP.getUnits()-iOPP.getUnits()+finishedUnits;
 			started = new Started(unit);
+			previousUnits = iOPP.getUnits();
+			startedAndFinishedUnits = finishedUnits - previousUnits;
 			valid = true;
-			System.out.println("start " + unit);
-		}else if(IFPP != null && IOPP!=null && started != null && finished==-1 ) {
-			int unit = IOPP.getUnits()+started.getUnits()-IFPP.getUnits();
-			finished = unit;
+		}else if(startedAndFinishedUnits != -1 && iOPP!=null && started != null) {
+			previousUnits = iOPP.getUnits();
+			finishedUnits = previousUnits + startedAndFinishedUnits;
+			iFPP = new IFProductProcess(iOPP.getUnits() + started.getUnits() - finishedUnits);
 			valid = true;
 		}
 	
-	
+		if(valid && (iOPP.getUnits() < 0 || iFPP.getUnits() < 0 || started.getUnits() < 0 || finishedUnits < 0 || previousUnits < 0 || startedAndFinishedUnits < 0))
+			valid = false;
 		return valid;
 	}	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	/**
 	 * @return the iOPP
 	 */
-	public IOProductProcess getIOPP() {
-		return IOPP;
+	public IOProductProcess getiOPP() {
+		return iOPP;
 	}
 	/**
 	 * @param iOPP the iOPP to set
 	 */
-	public void setIOPP(IOProductProcess iOPP) {
-		IOPP = iOPP;
+	public void setiOPP(IOProductProcess iOPP) {
+		iOPP = iOPP;
 	}
 	/**
 	 * @return the iFPP
 	 */
-	public IFProductProcess getIFPP() {
-		return IFPP;
+	public IFProductProcess getiFPP() {
+		return iFPP;
 	}
 	/**
 	 * @param iFPP the iFPP to set
 	 */
-	public void setIFPP(IFProductProcess iFPP) {
-		IFPP = iFPP;
+	public void setiFPP(IFProductProcess iFPP) {
+		iFPP = iFPP;
 	}
 	/**
 	 * @return the started
@@ -108,7 +106,20 @@ public class PhysicalFlow {
 	 * @param started the started to set
 	 */
 	public int getFinished() {
-		return finished;
+		return finishedUnits;
 	}
 	
+	/**
+	 * @param started the started to set
+	 */
+	public int getPrevious() {
+		return previousUnits;
+	}
+	
+	/**
+	 * @param started the started to set
+	 */
+	public int getStartedFinished() {
+		return startedAndFinishedUnits;
+	}
 }
