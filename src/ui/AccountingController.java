@@ -184,7 +184,8 @@ public class AccountingController {
 				process.getPP();
 				costsToBeAssigned.add(new Label(String.valueOf(process.getIOPP())), 1, 0);
 				costsToBeAssigned.add(new Label(String.valueOf(addedCostMD + addedCostMOD + addedCostCIF)), 1, 1);
-				costsToBeAssigned.add(new Label(String.valueOf(addedCostMD + addedCostMOD + addedCostCIF + process.getIOPP())), 1, 2);
+				costsToBeAssigned.add(new Label(String.valueOf(process.getTransferedCost())), 1, 2);
+				costsToBeAssigned.add(new Label(String.valueOf(addedCostMD + addedCostMOD + addedCostCIF + process.getIOPP() + process.getTransferedCost())), 1, 3);
 				for(int i = 0; i < 4; i++) {
 					for(int j = 0; j < 4; j++) {
 						prodEquivPeps.add(new Label(String.valueOf(process.getProduction().getPeps()[i][j])), j, i);

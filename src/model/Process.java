@@ -20,6 +20,12 @@ public class Process {
 		production = new EquivalentProduction();
 	}
 	/**
+	 * @return the transferedCost
+	 */
+	public double getTransferedCost() {
+		return transferedCost;
+	}
+	/**
 	 * @return the flow
 	 */
 	public PhysicalFlow getFlow() {
