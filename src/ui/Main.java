@@ -16,7 +16,7 @@ public class Main  extends Application{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
-		stage.setTitle("Minecraft inventory");
+		stage.setTitle("Process costing");
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.show();

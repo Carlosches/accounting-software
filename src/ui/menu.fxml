@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<TabPane prefHeight="643.0" prefWidth="786.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AccountingController">
+<TabPane prefHeight="942.0" prefWidth="1088.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AccountingController">
    <tabs>
       <Tab text="Flujo físico">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Pane prefHeight="644.0" prefWidth="611.0">
+                  <Pane layoutX="-7.0" prefHeight="644.0" prefWidth="611.0">
                      <children>
                         <Label layoutX="174.0" layoutY="69.0" prefHeight="28.0" prefWidth="52.0" text="IO PP">
                            <font>
@@ -177,7 +177,7 @@
       </Tab>
       <Tab text="Asignación de costos">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1088.0">
                <children>
                   <Label layoutX="115.0" layoutY="14.0" text="PEPS">
                      <font>
@@ -189,7 +189,7 @@
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="62.0" layoutY="129.0">
+                  <GridPane fx:id="unitaryCostPeps" alignment="CENTER" gridLinesVisible="true" layoutX="62.0" layoutY="129.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="124.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="76.0" />
@@ -209,6 +209,122 @@
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="107.0" text="Total costo por unidad" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
+                  <GridPane fx:id="finishedProductPeps" gridLinesVisible="true" layoutX="62.0" layoutY="367.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="207.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefWidth="98.0" text="MOD" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" prefWidth="98.0" text="CIF" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="136.0" text="Total und terminadas" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="157.0" text="Unds iniciadas y terminadas" GridPane.rowIndex="5" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="197.0" text="Costo total de producto terminado" GridPane.rowIndex="6" />
+                        <Label alignment="CENTER" prefWidth="98.0" text="IOPP" />
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="77.0" prefWidth="98.0" text="MD" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Label layoutX="37.0" layoutY="311.0" text="Producto terminado">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="43.0" layoutY="569.0" text="Producto en proceso">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <GridPane fx:id="inProcessProductPeps" gridLinesVisible="true" layoutX="65.0" layoutY="616.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="161.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="83.0" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="152.0" text="Del proceso anterior" />
+                        <Label alignment="CENTER" prefWidth="98.0" text="MD" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefWidth="98.0" text="MOD" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" prefWidth="98.0" text="CIF" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" prefWidth="98.0" text="Total IFPP" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <Label layoutX="39.0" layoutY="817.0" text="Total costos asignados">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalAssignedCostsPeps" layoutX="151.0" layoutY="865.0" />
+                  <Label layoutX="772.0" layoutY="14.0" text="PP">
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="651.0" layoutY="78.0" text="Costo por unidad PP">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <GridPane fx:id="unitaryCostPP" alignment="CENTER" gridLinesVisible="true" layoutX="672.0" layoutY="129.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="124.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="76.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Del proceso anterior" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="17.0" text="MD" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="47.0" text="MOD" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="77.0" text="CIF" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="107.0" text="Total costo por unidad" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="costAssignationPP" gridLinesVisible="true" layoutX="621.0" layoutY="354.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="207.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="162.0" text="IFPP (proceso anterior)" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="165.0" text="MD" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="136.0" text="MOD" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="157.0" text="CIF" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="151.0" text="unidades terminadas" />
+                     </children>
+                  </GridPane>
+                  <Label layoutX="651.0" layoutY="551.0" text="Total costos asignados">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalAssignedCostsPP" layoutX="783.0" layoutY="616.0" />
                </children></AnchorPane>
         </content>
       </Tab>

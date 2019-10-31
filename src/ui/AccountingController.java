@@ -12,30 +12,36 @@ import model.Process;
 import model.Status;
 
 public class AccountingController {
-	@FXML
-	private TextField ioPPText;
+    @FXML
+    private TextField ioPPText;
 
-	@FXML
-	private TextField ifPPText;
+    @FXML
+    private TextField ifPPText;
 
-	@FXML
-	private GridPane prodEquivPP;
+    @FXML
+    private TextField started;
 
-	@FXML
-	private TextField started;
+    @FXML
+    private TextField addedCostMD;
 
-	@FXML
-	private GridPane prodEquivPeps;
+    @FXML
+    private TextField addedCostMOD;
 
-	@FXML
-	private TextField finished;
+    @FXML
+    private TextField addedCostCIF;
 
-	@FXML
-	private TextField previousUnits;
+    @FXML
+    private TextField transfCosts;
+
+    @FXML
+    private TextField finished;
 
     @FXML
     private TextField startedAndFinished;
-	
+
+    @FXML
+    private TextField previousUnits;
+
     @FXML
     private TextField ioPPMODPercent;
 
@@ -46,30 +52,6 @@ public class AccountingController {
     private TextField ioPPCIFPercent;
 
     @FXML
-    private TextField ifPPMDPercent;
-
-    @FXML
-    private TextField ifPPMODPercent;
-
-    @FXML
-    private TextField ifPPCIFPercent;
-    
-    @FXML
-    private TextField addedCostMD;
-
-    @FXML
-    private TextField addedCostMOD;
-
-    @FXML
-    private TextField addedCostCIF;
-    
-    @FXML
-    private TextField transfCostUnits;
-    
-    @FXML
-    private TextField transfCosts;
-    
-    @FXML
     private TextField valueCIF;
 
     @FXML
@@ -77,9 +59,48 @@ public class AccountingController {
 
     @FXML
     private TextField valueMD;
-    
+
     @FXML
     private TextField valueTC;
+
+    @FXML
+    private TextField ifPPMDPercent;
+
+    @FXML
+    private TextField ifPPMODPercent;
+
+    @FXML
+    private TextField ifPPCIFPercent;
+
+    @FXML
+    private TextField transfCostUnits;
+
+    @FXML
+    private GridPane prodEquivPeps;
+
+    @FXML
+    private GridPane prodEquivPP;
+
+    @FXML
+    private GridPane unitaryCostPeps;
+
+    @FXML
+    private GridPane finishedProductPeps;
+
+    @FXML
+    private GridPane inProcessProductPeps;
+
+    @FXML
+    private Label totalAssignedCostsPeps;
+
+    @FXML
+    private GridPane unitaryCostPP;
+
+    @FXML
+    private GridPane costAssignationPP;
+
+    @FXML
+    private Label totalAssignedCostsPP;
     
 	private Process process;
 	
@@ -99,9 +120,9 @@ public class AccountingController {
 		String aCMD = addedCostMD.getText();
 		String aCMOD = addedCostMOD.getText();
 		String aCCIF = addedCostCIF.getText();
-		String vMD = addedCostMD.getText();
-		String vMOD = addedCostMOD.getText();
-		String vCIF = addedCostCIF.getText();
+		String vMD = valueMD.getText();
+		String vMOD = valueMOD.getText();
+		String vCIF = valueCIF.getText();
 		String vTC = valueTC.getText();
 		int iPP = checkFields(ioPP);
 		int fPP = checkFields(ifPP);
@@ -139,7 +160,7 @@ public class AccountingController {
 				tc = Double.parseDouble(transfCosts.getText());
 				tcUnit = Integer.parseInt(transfCostUnits.getText());
 			}
-			process.setTransferedUnits(tcUnit);
+			
 			process.setTransferedCost(tc);
 			if(process.getFlow().check()) {
 				Status s1 = new Status((100 - Double.parseDouble(ioPPMDPercent.getText()))/100, (100 - Double.parseDouble(ioPPMODPercent.getText()))/100, (100 - Double.parseDouble(ioPPCIFPercent.getText()))/100, ioMD, ioMOD, ioCIF, ioTC);
@@ -155,6 +176,7 @@ public class AccountingController {
 				process.setAddedCostMD(addedCostMD);
 				process.setAddedCostMOD(addedCostMOD);
 				process.setAddedCostCIF(addedCostCIF);
+				process.setIOPP(ioMD + ioMOD + ioCIF + ioTC);
 				process.getPeps();
 				process.getPP();
 				for(int i = 0; i < 4; i++) {
@@ -167,6 +189,11 @@ public class AccountingController {
 						prodEquivPP.add(new Label(String.valueOf(process.getProduction().getPP()[i][j])), j, i);
 					}
 				}
+				double[] unit = process.calculateUnitaryCosts();
+				double[] peps = process.getAssignedCostsPeps();
+				double[] pp = process.getAssignedCostsPP();
+				showAssignedCosts(unit, peps, pp);
+				
 			}else {
 				startedAndFinished.clear();
 				ifPPText.clear();
@@ -185,6 +212,26 @@ public class AccountingController {
 			Alert alert = new Alert(AlertType.ERROR, "Please insert valid values");
 			alert.showAndWait();
 		}
+	}
+	
+	private void showAssignedCosts(double[] unit, double[] peps, double[] pp) {
+		for (int i = 0; i < 5; i++) {
+			unitaryCostPeps.add(new Label(String.valueOf(unit[i])), 1, i);
+		}
+		for (int i = 0; i < 5; i++) {
+			unitaryCostPP.add(new Label(String.valueOf(unit[i+5])), 1, i);
+		}
+		for(int i = 0; i < 7; i++) {
+			finishedProductPeps.add(new Label(String.valueOf(peps[i])), 1, i);
+		}
+		for(int i = 0; i < 6; i++) {
+			inProcessProductPeps.add(new Label(String.valueOf(peps[i+7])), 1, i);
+		}
+		totalAssignedCostsPeps.setText(String.valueOf(peps[peps.length-1]));
+		for(int i = 0; i < 5; i++) {
+			costAssignationPP.add(new Label(String.valueOf(pp[i])), 1, i);
+		}
+		totalAssignedCostsPP.setText(String.valueOf(pp[pp.length-1]));
 	}
 	
 	private boolean checkTC() {

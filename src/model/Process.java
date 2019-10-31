@@ -8,7 +8,7 @@ public class Process {
 	private double addedCostMD;
 	private double addedCostMOD;
 	private double addedCostCIF;
-	private int transferedUnits;
+	private double ioPP;
 	private double transferedCost;
 	
 	/**
@@ -76,31 +76,34 @@ public class Process {
 	public void setAddedCostCIF(double addedCostCIF) {
 		this.addedCostCIF = addedCostCIF;
 	}
-	
-	public void setTransferedUnits(int transferedUnits) {
-		this.transferedUnits = transferedUnits;
-	}
-	
+
 	public void setTransferedCost(double transferedCost) {
 		this.transferedCost = transferedCost;
 	}
 	
-	public void calculateUnitaryCosts() {
-		double unitaryTC = 0;
+	public double[] calculateUnitaryCosts() {
+		double unitaryTCPeps = flow.getiOPP().getStatus().getCTvalue()/flow.getiOPP().getUnits();
+		double unitaryTCPP = (transferedCost + flow.getiOPP().getStatus().getCTvalue())/(flow.getStarted().getUnits() + flow.getiOPP().getUnits());
 		double unitaryMDPeps = addedCostMD / production.getPeps()[3][1];
 		double unitaryMODPeps = addedCostMOD / production.getPeps()[3][2];
 		double unitaryCIFPeps = addedCostCIF / production.getPeps()[3][3];
-		double unitaryMDPP = (addedCostMD+flow.getiOPP().getStatus().getMDvalue()) / production.getPeps()[3][1];
-		double unitaryMODPP = (addedCostMOD+flow.getiOPP().getStatus().getMODvalue()) / production.getPeps()[3][2];
-		double unitaryCIFPP = (addedCostCIF+flow.getiOPP().getStatus().getCIFvalue()) / production.getPeps()[3][3];
-		costs = new CostAllocation(unitaryTC, unitaryMDPeps, unitaryMODPeps, unitaryCIFPeps, unitaryMDPP, unitaryMODPP, unitaryCIFPP);
+		double unitaryMDPP = (addedCostMD+flow.getiOPP().getStatus().getMDvalue()) / production.getPP()[2][1];
+		double unitaryMODPP = (addedCostMOD+flow.getiOPP().getStatus().getMODvalue()) / production.getPP()[2][2];
+		double unitaryCIFPP = (addedCostCIF+flow.getiOPP().getStatus().getCIFvalue()) / production.getPP()[2][3];
+		costs = new CostAllocation(unitaryTCPeps, unitaryTCPP,unitaryMDPeps, unitaryMODPeps, unitaryCIFPeps, unitaryMDPP, unitaryMODPP, unitaryCIFPP);
+		double[] arr = {unitaryTCPeps, unitaryMDPeps, unitaryMODPeps, unitaryCIFPeps, unitaryTCPeps+unitaryMDPeps+unitaryMODPeps+unitaryCIFPeps, unitaryTCPP,
+				unitaryMDPP, unitaryMODPP, unitaryCIFPP, unitaryTCPP+unitaryMDPP+unitaryMODPP+unitaryCIFPP};
+		return arr;
 	}
 	
 	public double[] getAssignedCostsPeps() {
-		return costs.calculateAssignedCostsPeps(production.getPeps());
+		return costs.calculateAssignedCostsPeps(production.getPeps(), ioPP);
 	}
 	
 	public double[] getAssignedCostsPP() {
 		return costs.calculateAssignedCostsPP(production.getPP());
+	}
+	public void setIOPP(double ioPP) {
+		this.ioPP = ioPP;
 	}
 }
