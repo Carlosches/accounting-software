@@ -1,0 +1,35 @@
+.list-view .list-cell:even {
+-fx-background-color: #A52A2A;
+}
+
+.list-view .list-cell:odd {
+	-fx-background-color: #ED1C24;
+}
+
+.label {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+   
+}
+
+.button {
+    -fx-text-fill: #000000;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-background-color: #A52A2A;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.vbox {
+    -fx-border-color: #2e8b57;
+    -fx-background-color: #0059AA;
+    -fx-border-width: 2px;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+}
+
+.list-view .scroll-bar:horizontal {
+    -fx-scale-x: 0;
+}

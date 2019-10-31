@@ -102,6 +102,9 @@ public class AccountingController {
     @FXML
     private Label totalAssignedCostsPP;
     
+    @FXML
+    private GridPane costsToBeAssigned;
+    
 	private Process process;
 	
 	@FXML
@@ -179,6 +182,9 @@ public class AccountingController {
 				process.setIOPP(ioMD + ioMOD + ioCIF + ioTC);
 				process.getPeps();
 				process.getPP();
+				costsToBeAssigned.add(new Label(String.valueOf(process.getIOPP())), 1, 0);
+				costsToBeAssigned.add(new Label(String.valueOf(addedCostMD + addedCostMOD + addedCostCIF)), 1, 1);
+				costsToBeAssigned.add(new Label(String.valueOf(addedCostMD + addedCostMOD + addedCostCIF + process.getIOPP())), 1, 2);
 				for(int i = 0; i < 4; i++) {
 					for(int j = 0; j < 4; j++) {
 						prodEquivPeps.add(new Label(String.valueOf(process.getProduction().getPeps()[i][j])), j, i);

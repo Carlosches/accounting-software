@@ -106,4 +106,8 @@ public class Process {
 	public void setIOPP(double ioPP) {
 		this.ioPP = ioPP;
 	}
+	
+	public double getIOPP() {
+		return ioPP;
+	}
 }
