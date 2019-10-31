@@ -8,6 +8,8 @@ public class Process {
 	private double addedCostMD;
 	private double addedCostMOD;
 	private double addedCostCIF;
+	private int transferedUnits;
+	private double transferedCost;
 	
 	/**
 	 * @param flow
@@ -15,7 +17,7 @@ public class Process {
 	 * @param costs
 	 */
 	public Process() {
-		EquivalentProduction production = new EquivalentProduction();
+		production = new EquivalentProduction();
 	}
 	/**
 	 * @return the flow
@@ -73,6 +75,14 @@ public class Process {
 	
 	public void setAddedCostCIF(double addedCostCIF) {
 		this.addedCostCIF = addedCostCIF;
+	}
+	
+	public void setTransferedUnits(int transferedUnits) {
+		this.transferedUnits = transferedUnits;
+	}
+	
+	public void setTransferedCost(double transferedCost) {
+		this.transferedCost = transferedCost;
 	}
 	
 	public void calculateUnitaryCosts() {

@@ -27,15 +27,15 @@ public class EquivalentProduction {
 	}
 	
 	public void calculatePP(Status iF, int finished, int ifPP) {
-		peps[0][0] = peps[0][1] = peps[0][2] = peps[0][3] = finished;
-		peps[1][0] = ifPP;
-		peps[1][1] = ifPP*iF.getMDpercentage();
-		peps[1][2] = ifPP*iF.getMODpercentage();
-		peps[1][3] = ifPP*iF.getCIFpercentage();
-		peps[2][0] = peps[0][0] + peps[1][0];
-		peps[2][1] = peps[0][1] + peps[1][1];
-		peps[2][2] = peps[0][2] + peps[1][2];
-		peps[2][3] = peps[0][3] + peps[1][3];
+		pp[0][0] = pp[0][1] = pp[0][2] = pp[0][3] = finished;
+		pp[1][0] = ifPP;
+		pp[1][1] = ifPP*iF.getMDpercentage();
+		pp[1][2] = ifPP*iF.getMODpercentage();
+		pp[1][3] = ifPP*iF.getCIFpercentage();
+		pp[2][0] = pp[0][0] + pp[1][0];
+		pp[2][1] = pp[0][1] + pp[1][1];
+		pp[2][2] = pp[0][2] + pp[1][2];
+		pp[2][3] = pp[0][3] + pp[1][3];
 	}
 	
 	public double[][] getPeps(){

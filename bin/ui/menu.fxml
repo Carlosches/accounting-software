@@ -26,37 +26,37 @@
                            </font>
                         </Label>
                         <TextField fx:id="ioPPText" layoutX="123.0" layoutY="123.0" />
-                        <Label layoutX="159.0" layoutY="437.0" prefHeight="28.0" prefWidth="56.0" text="IF PP">
+                        <Label layoutX="160.0" layoutY="470.0" prefHeight="28.0" prefWidth="56.0" text="IF PP">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="ifPPText" layoutX="131.0" layoutY="471.0" prefHeight="3.0" prefWidth="113.0" />
+                        <TextField fx:id="ifPPText" layoutX="131.0" layoutY="496.0" prefHeight="3.0" prefWidth="113.0" />
                         <Label layoutX="141.0" layoutY="172.0" prefHeight="28.0" prefWidth="109.0" text="Comenzadas">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
                         <TextField fx:id="started" layoutX="121.0" layoutY="200.0" />
-                        <Label layoutX="118.0" layoutY="291.0" prefHeight="28.0" prefWidth="158.0" text="Costos agregados">
+                        <Label layoutX="109.0" layoutY="318.0" prefHeight="28.0" prefWidth="158.0" text="Costos agregados">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="addedCostMD" layoutX="165.0" layoutY="330.0" />
-                        <TextField fx:id="addedCostMOD" layoutX="165.0" layoutY="368.0" />
-                        <TextField fx:id="addedCostCIF" layoutX="165.0" layoutY="404.0" />
-                        <Label layoutX="79.0" layoutY="329.0" prefHeight="28.0" prefWidth="42.0" text="MD">
+                        <TextField fx:id="addedCostMD" layoutX="165.0" layoutY="356.0" />
+                        <TextField fx:id="addedCostMOD" layoutX="165.0" layoutY="393.0" />
+                        <TextField fx:id="addedCostCIF" layoutX="165.0" layoutY="434.0" />
+                        <Label layoutX="79.0" layoutY="355.0" prefHeight="28.0" prefWidth="42.0" text="MD">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="74.0" layoutY="367.0" prefHeight="28.0" prefWidth="52.0" text="MOD">
+                        <Label layoutX="74.0" layoutY="392.0" prefHeight="28.0" prefWidth="52.0" text="MOD">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label layoutX="83.0" layoutY="403.0" prefHeight="28.0" prefWidth="34.0" text="CIF">
+                        <Label layoutX="83.0" layoutY="432.0" prefHeight="28.0" prefWidth="34.0" text="CIF">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -66,7 +66,7 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="transfCosts" layoutX="121.0" layoutY="254.0" />
+                        <TextField fx:id="transfCosts" layoutX="43.0" layoutY="279.0" />
                         <TextField fx:id="finished" layoutX="374.0" layoutY="307.0" />
                         <Label layoutX="416.0" layoutY="283.0" text="Terminadas" />
                         <TextField fx:id="startedAndFinished" layoutX="447.0" layoutY="368.0" />
@@ -85,17 +85,28 @@
                         <TextField fx:id="ioPPMODPercent" layoutX="412.0" layoutY="106.0" prefHeight="25.0" prefWidth="36.0" />
                         <TextField fx:id="ioPPMDPercent" layoutX="412.0" layoutY="71.0" prefHeight="25.0" prefWidth="35.0" />
                         <TextField fx:id="ioPPCIFPercent" layoutX="412.0" layoutY="136.0" prefHeight="25.0" prefWidth="36.0" />
-                        <Label layoutX="404.0" layoutY="41.0" text="Porecentaje" />
-                        <TextField layoutX="466.0" layoutY="136.0" />
-                        <TextField layoutX="466.0" layoutY="106.0" />
-                        <TextField layoutX="466.0" layoutY="71.0" />
+                        <Label layoutX="404.0" layoutY="41.0" text="Porcentaje" />
+                        <TextField fx:id="valueCIF" layoutX="466.0" layoutY="136.0" />
+                        <TextField fx:id="valueMOD" layoutX="466.0" layoutY="106.0" />
+                        <TextField fx:id="valueMD" layoutX="466.0" layoutY="71.0" />
                         <Label layoutX="498.0" layoutY="41.0" text="Valor" />
                         <Label layoutX="415.0" layoutY="173.0" text="100%" />
-                        <TextField layoutX="466.0" layoutY="169.0" />
+                        <TextField fx:id="valueTC" layoutX="466.0" layoutY="169.0" />
                         <Label layoutX="407.0" layoutY="449.0" text="Porcentaje" />
                         <TextField fx:id="ifPPMDPercent" layoutX="418.0" layoutY="471.0" prefHeight="25.0" prefWidth="35.0" />
                         <TextField fx:id="ifPPMODPercent" layoutX="418.0" layoutY="504.0" prefHeight="25.0" prefWidth="35.0" />
                         <TextField fx:id="ifPPCIFPercent" layoutX="418.0" layoutY="542.0" prefHeight="25.0" prefWidth="35.0" />
+                        <Label layoutX="87.0" layoutY="252.0" prefHeight="28.0" prefWidth="68.0" text="Costo">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="transfCostUnits" layoutX="193.0" layoutY="279.0" />
+                        <Label layoutX="233.0" layoutY="252.0" prefHeight="28.0" prefWidth="68.0" text="Unidades">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                   <Button layoutX="611.0" layoutY="22.0" mnemonicParsing="false" onAction="#fillFlowButton" text="Completar flujo físico" />
