@@ -73,9 +73,6 @@ public class AccountingController {
     private TextField ifPPCIFPercent;
 
     @FXML
-    private TextField transfCostUnits;
-
-    @FXML
     private GridPane prodEquivPeps;
 
     @FXML
@@ -148,7 +145,7 @@ public class AccountingController {
 			ioMD = Double.parseDouble(vMD);
 			ioMOD = Double.parseDouble(vMOD);
 			ioCIF = Double.parseDouble(vCIF);
-			if(!transfCosts.getText().isEmpty() && !transfCostUnits.getText().isEmpty())
+			if(!valueTC.getText().isEmpty())
 				ioTC = Double.parseDouble(vTC);
 		}catch(NumberFormatException e) { ioTC = -1;}
 		
@@ -158,11 +155,9 @@ public class AccountingController {
 		if(possible) {
 			process.setFlow(new PhysicalFlow(iPP, fPP, start, finish, previous, startedFinished));
 			double tc = 0;
-			int tcUnit = 0;
-			if(!transfCosts.getText().isEmpty() && !transfCostUnits.getText().isEmpty()) {
+			if(!transfCosts.getText().isEmpty()) {
 				tc = Double.parseDouble(transfCosts.getText());
-				tcUnit = Integer.parseInt(transfCostUnits.getText());
-			}
+			}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 			
 			process.setTransferedCost(tc);
 			if(process.getFlow().check()) {
@@ -243,14 +238,12 @@ public class AccountingController {
 	
 	private boolean checkTC() {
 		boolean possible = true;
-		if((transfCosts.getText().isEmpty() && !transfCostUnits.getText().isEmpty()) || (!transfCosts.getText().isEmpty() && transfCostUnits.getText().isEmpty()))
+		if(transfCosts.getText().isEmpty())
 			possible = false;
-		if(!transfCosts.getText().isEmpty() && !transfCostUnits.getText().isEmpty()) {
+		if(!transfCosts.getText().isEmpty()) {
 			double cost = 0;
-			int unit = 0;
 			try {
 				cost = Double.parseDouble(transfCosts.getText());
-				unit = Integer.parseInt(transfCostUnits.getText());
 			}catch(NumberFormatException e) {
 				possible = false;
 			}

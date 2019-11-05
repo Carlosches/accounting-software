@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -15,111 +10,197 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<TabPane prefHeight="942.0" prefWidth="1088.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AccountingController">
+<TabPane prefHeight="942.0" prefWidth="1088.0" style="-fx-background-color: #4ba9c8;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AccountingController">
    <tabs>
       <Tab text="Flujo físico">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Pane layoutX="-7.0" prefHeight="689.0" prefWidth="633.0">
+                  <Pane layoutX="228.0" layoutY="59.0" prefHeight="689.0" prefWidth="633.0">
                      <children>
-                        <ImageView fitHeight="602.0" fitWidth="453.0" layoutX="-18.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../uiIMG/sssss.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="174.0" layoutY="69.0" prefHeight="28.0" prefWidth="52.0" text="IO PP">
+                        <Ellipse fill="WHITE" layoutX="-14.0" layoutY="355.0" radiusX="140.0" radiusY="233.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #778899;" />
+                        <Label layoutX="-42.0" layoutY="482.0" prefHeight="28.0" prefWidth="56.0" text="IF PP">
                            <font>
-                              <Font size="19.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="ioPPText" layoutX="123.0" layoutY="123.0" />
-                        <Label layoutX="160.0" layoutY="470.0" prefHeight="28.0" prefWidth="56.0" text="IF PP">
+                        <TextField fx:id="ifPPText" layoutX="-70.0" layoutY="514.0" prefHeight="3.0" prefWidth="113.0" style="-fx-background-color: #C0C0C0;" />
+                        <Label layoutX="-68.0" layoutY="304.0" prefHeight="30.0" prefWidth="122.0" text="Comenzadas">
                            <font>
-                              <Font size="19.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="ifPPText" layoutX="131.0" layoutY="496.0" prefHeight="3.0" prefWidth="113.0" />
-                        <Label layoutX="141.0" layoutY="172.0" prefHeight="28.0" prefWidth="109.0" text="Comenzadas">
+                        <TextField fx:id="started" layoutX="-107.0" layoutY="342.0" style="-fx-background-color: #C0C0C0;" />
+                        <TextField fx:id="finished" alignment="CENTER" layoutX="201.0" layoutY="342.0" style="-fx-background-color: #C0C0C0;" />
+                        <Label layoutX="256.0" layoutY="319.0" text="Terminadas">
                            <font>
-                              <Font size="19.0" />
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <TextField fx:id="startedAndFinished" alignment="CENTER" layoutX="447.0" layoutY="432.0" style="-fx-background-color: #C0C0C0;" />
+                        <Label layoutX="462.0" layoutY="411.0" text="Iniciadas y terminadas">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <TextField fx:id="previousUnits" alignment="CENTER" layoutX="447.0" layoutY="241.0" style="-fx-background-color: #C0C0C0;" />
+                        <Label layoutX="471.0" layoutY="217.0" text="Unidades anteriores">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Label layoutX="261.0" layoutY="4.0" text="Estado IO">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Label layoutX="211.0" layoutY="529.0" text="Estado IF">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Line endX="133.0" layoutX="-26.0" layoutY="471.0" startX="-107.0" />
+                        <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="143.0" layoutY="26.0" style="-fx-background-color: #778899;">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" prefHeight="21.0" prefWidth="101.0" text="MD">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="21.0" prefWidth="99.0" text="MOD" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="21.0" prefWidth="100.0" text="CIF" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="21.0" prefWidth="98.0" text="CT" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="ioPPMDPercent" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="1" />
+                              <TextField fx:id="ioPPCIFPercent" alignment="CENTER" prefHeight="25.0" prefWidth="36.0" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="ioPPMODPercent" alignment="CENTER" prefHeight="33.0" prefWidth="79.0" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="valueMD" alignment="CENTER" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="2" />
+                              <TextField fx:id="valueMOD" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField fx:id="valueCIF" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <TextField fx:id="valueTC" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" prefHeight="21.0" prefWidth="105.0" text="100%" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
+                        <Line endX="22.0" endY="-40.0" layoutX="110.0" layoutY="135.0" startX="-84.0" startY="-4.0" />
+                        <Line endX="100.0" layoutX="33.0" layoutY="94.0" startX="70.0" />
+                        <Line endX="108.5" endY="-42.5" layoutX="25.0" layoutY="136.0" startX="92.0" startY="-23.0" />
+                        <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="143.0" layoutY="557.0" style="-fx-background-color: #778899;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" prefHeight="21.0" prefWidth="99.0" text="MOD" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="21.0" prefWidth="100.0" text="CIF" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="ifPPMDPercent" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="1" />
+                              <TextField fx:id="ifPPMODPercent" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="ifPPCIFPercent" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" prefHeight="21.0" prefWidth="101.0" text="MD">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                        <Line endX="92.0" layoutX="33.0" layoutY="617.0" startX="-40.0" startY="-32.0" />
+                        <Line endX="100.0" layoutX="25.0" layoutY="618.0" startX="78.0" startY="10.0" />
+                        <Line endX="125.70709228515625" endY="29.70709228515625" layoutY="588.0" startX="110.0" startY="6.0" />
+                        <Line endX="18.0" layoutX="174.0" layoutY="355.0" startX="-48.0" />
+                        <Line endX="33.5" endY="52.5" layoutX="159.0" layoutY="303.0" startX="22.0" startY="40.0" />
+                        <Line endX="75.20709228515625" endY="-43.79290771484375" layoutX="118.0" layoutY="400.0" startX="59.0" startY="-33.0" />
+                        <Line endX="19.0" endY="-25.0" layoutX="418.0" layoutY="304.0" startX="-43.0" startY="38.0" />
+                        <Line endX="100.0" layoutX="338.0" layoutY="278.0" startX="76.0" startY="7.0" />
+                        <Line endX="100.0" layoutX="337.0" layoutY="281.0" startX="100.0" startY="19.0" />
+                        <Line endX="93.0" endY="35.0" layoutX="338.0" layoutY="401.0" startX="35.0" startY="-28.0" />
+                        <Line endX="103.7071533203125" endY="0.70709228515625" layoutX="328.0" layoutY="436.0" startX="78.0" startY="-8.0" />
+                        <Line endX="-65.585693359375" endY="16.0" layoutX="498.0" layoutY="397.0" startX="-65.585693359375" startY="40.4141845703125" />
+                        <Label layoutX="497.0" layoutY="530.0" prefHeight="30.0" prefWidth="177.0" text="Costos agregados">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="started" layoutX="121.0" layoutY="200.0" />
-                        <Label layoutX="109.0" layoutY="318.0" prefHeight="28.0" prefWidth="158.0" text="Costos agregados">
-                           <font>
-                              <Font size="19.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="addedCostMD" layoutX="165.0" layoutY="356.0" />
-                        <TextField fx:id="addedCostMOD" layoutX="165.0" layoutY="393.0" />
-                        <TextField fx:id="addedCostCIF" layoutX="165.0" layoutY="434.0" />
-                        <Label layoutX="79.0" layoutY="355.0" prefHeight="28.0" prefWidth="42.0" text="MD">
-                           <font>
-                              <Font size="19.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="74.0" layoutY="392.0" prefHeight="28.0" prefWidth="52.0" text="MOD">
-                           <font>
-                              <Font size="19.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="83.0" layoutY="432.0" prefHeight="28.0" prefWidth="34.0" text="CIF">
-                           <font>
-                              <Font size="19.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="121.0" layoutY="225.0" prefHeight="28.0" prefWidth="165.0" text="Costos transferidos">
-                           <font>
-                              <Font size="19.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="transfCosts" layoutX="43.0" layoutY="279.0" />
-                        <TextField fx:id="finished" layoutX="424.0" layoutY="306.0" />
-                        <Label layoutX="416.0" layoutY="283.0" text="Terminadas" />
-                        <TextField fx:id="startedAndFinished" layoutX="447.0" layoutY="368.0" />
-                        <Label layoutX="462.0" layoutY="347.0" text="Iniciadas y terminadas" />
-                        <TextField fx:id="previousUnits" layoutX="447.0" layoutY="241.0" />
-                        <Label layoutX="471.0" layoutY="217.0" text="Unidades anteriores" />
-                        <Label layoutX="452.0" layoutY="14.0" text="Estado IO" />
-                        <Label layoutX="382.0" layoutY="173.0" text="CT" />
-                        <Label layoutX="380.0" layoutY="75.0" text="MD" />
-                        <Label layoutX="375.0" layoutY="110.0" text="MOD" />
-                        <Label layoutX="381.0" layoutY="140.0" text="CIF" />
-                        <Label layoutX="438.0" layoutY="429.0" text="Estado IF" />
-                        <Label layoutX="382.0" layoutY="546.0" text="CIF" />
-                        <Label layoutX="376.0" layoutY="508.0" text="MOD" />
-                        <Label layoutX="380.0" layoutY="475.0" text="MD" />
-                        <TextField fx:id="ioPPMODPercent" layoutX="412.0" layoutY="106.0" prefHeight="25.0" prefWidth="36.0" />
-                        <TextField fx:id="ioPPMDPercent" layoutX="436.0" layoutY="71.0" prefHeight="25.0" prefWidth="35.0" />
-                        <TextField fx:id="ioPPCIFPercent" layoutX="412.0" layoutY="136.0" prefHeight="25.0" prefWidth="36.0" />
-                        <Label layoutX="404.0" layoutY="41.0" text="Porcentaje" />
-                        <TextField fx:id="valueCIF" layoutX="466.0" layoutY="136.0" />
-                        <TextField fx:id="valueMOD" layoutX="466.0" layoutY="106.0" />
-                        <TextField fx:id="valueMD" layoutX="477.0" layoutY="71.0" />
-                        <Label layoutX="498.0" layoutY="41.0" text="Valor" />
-                        <Label layoutX="415.0" layoutY="173.0" text="100%" />
-                        <TextField fx:id="valueTC" layoutX="466.0" layoutY="169.0" />
-                        <Label layoutX="407.0" layoutY="449.0" text="Porcentaje" />
-                        <TextField fx:id="ifPPMDPercent" layoutX="418.0" layoutY="471.0" prefHeight="25.0" prefWidth="35.0" />
-                        <TextField fx:id="ifPPMODPercent" layoutX="418.0" layoutY="504.0" prefHeight="25.0" prefWidth="35.0" />
-                        <TextField fx:id="ifPPCIFPercent" layoutX="418.0" layoutY="542.0" prefHeight="25.0" prefWidth="35.0" />
-                        <Label layoutX="87.0" layoutY="252.0" prefHeight="28.0" prefWidth="68.0" text="Costo">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="transfCostUnits" layoutX="193.0" layoutY="279.0" />
-                        <Label layoutX="233.0" layoutY="252.0" prefHeight="28.0" prefWidth="68.0" text="Unidades">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
+                        <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="486.0" layoutY="558.0" style="-fx-background-color: #778899;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" prefHeight="21.0" prefWidth="99.0" text="MOD" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="21.0" prefWidth="100.0" text="CIF" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="28.0" prefWidth="104.0" text="MD">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="addedCostMD" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="1" />
+                              <TextField fx:id="addedCostMOD" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="addedCostCIF" style="-fx-background-color: #C0C0C0;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
                      </children>
                   </Pane>
-                  <Button layoutX="611.0" layoutY="22.0" mnemonicParsing="false" onAction="#fillFlowButton" text="Completar flujo físico" />
+                  <Button layoutX="611.0" layoutY="22.0" mnemonicParsing="false" onAction="#fillFlowButton" style="-fx-background-color: #778899;" text="Asignar costos" />
+                  <TextField fx:id="ioPPText" layoutX="125.0" layoutY="249.0" style="-fx-background-color: #C0C0C0;" />
+                  <Label layoutX="192.0" layoutY="210.0" prefHeight="28.0" prefWidth="52.0" text="IO PP">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Line endX="103.0" layoutX="229.0" layoutY="288.0" startX="-128.0" />
+                  <TextField fx:id="transfCosts" alignment="CENTER" layoutX="878.0" layoutY="95.0" style="-fx-background-color: #C0C0C0;" />
+                  <TextField fx:id="transfCostUnits" alignment="CENTER" layoutX="886.0" layoutY="142.0" style="-fx-background-color: #C0C0C0;" />
+                  <Label layoutX="874.0" layoutY="59.0" prefHeight="30.0" prefWidth="194.0" text="Costos transferidos">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
          </content>
       </Tab>
@@ -141,7 +222,7 @@
                   <Label layoutX="93.0" layoutY="119.0" text="Iniciadas y terminadas" />
                   <Label layoutX="152.0" layoutY="149.0" text="If PP" />
                   <Label layoutX="86.0" layoutY="188.0" text="Total unidades a costear" />
-                  <GridPane fx:id="prodEquivPeps" gridLinesVisible="true" layoutX="258.0" layoutY="89.0">
+                  <GridPane fx:id="prodEquivPeps" gridLinesVisible="true" layoutX="258.0" layoutY="89.0" style="-fx-background-color: #778899;">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -158,7 +239,7 @@
                   <Label layoutX="402.0" layoutY="64.0" text="MD" />
                   <Label layoutX="498.0" layoutY="64.0" text="MOD" />
                   <Label layoutX="606.0" layoutY="64.0" text="CIF" />
-                  <GridPane fx:id="prodEquivPP" gridLinesVisible="true" layoutX="258.0" layoutY="329.0">
+                  <GridPane fx:id="prodEquivPP" gridLinesVisible="true" layoutX="258.0" layoutY="329.0" style="-fx-background-color: #778899;">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -182,7 +263,7 @@
                         <Font name="System Bold" size="40.0" />
                      </font>
                   </Label>
-                  <GridPane fx:id="costsToBeAssigned" gridLinesVisible="true" layoutX="298.0" layoutY="560.0">
+                  <GridPane fx:id="costsToBeAssigned" gridLinesVisible="true" layoutX="298.0" layoutY="560.0" style="-fx-background-color: #778899;">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="193.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="0.0" prefWidth="100.0" />
@@ -194,10 +275,10 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="88.0" text="Io PP" />
-                        <Label alignment="CENTER" layoutX="10.0" layoutY="15.0" prefHeight="21.0" prefWidth="164.0" text="Costos agregados" GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" layoutX="10.0" layoutY="45.0" prefHeight="21.0" prefWidth="179.0" text="Total costos para asignar" GridPane.rowIndex="3" />
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="164.0" text="Costos transferidos" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="201.0" text="Io PP" />
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="15.0" prefHeight="21.0" prefWidth="214.0" text="Costos agregados" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="45.0" prefHeight="21.0" prefWidth="217.0" text="Total costos para asignar" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="196.0" text="Costos transferidos" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children></AnchorPane>
@@ -212,12 +293,12 @@
                         <Font name="System Bold" size="40.0" />
                      </font>
                   </Label>
-                  <Label layoutX="37.0" layoutY="72.0" text="Costo por unidad PEPS">
+                  <Label layoutX="53.0" layoutY="86.0" text="Costo por unidad PEPS">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <GridPane fx:id="unitaryCostPeps" alignment="CENTER" gridLinesVisible="true" layoutX="62.0" layoutY="129.0">
+                  <GridPane fx:id="unitaryCostPeps" alignment="CENTER" gridLinesVisible="true" layoutX="62.0" layoutY="129.0" style="-fx-background-color: #778899;">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="165.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="100.0" />
@@ -230,14 +311,14 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Del proceso anterior" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="17.0" text="MD" GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="47.0" text="MOD" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="77.0" text="CIF" GridPane.rowIndex="3" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="107.0" text="Total costo por unidad" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="182.0" text="Del proceso anterior" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="17.0" prefHeight="21.0" prefWidth="246.0" text="MD" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="47.0" prefHeight="21.0" prefWidth="214.0" text="MOD" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="77.0" prefHeight="21.0" prefWidth="343.0" text="CIF" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="107.0" prefHeight="21.0" prefWidth="345.0" text="Total costo por unidad" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
-                  <GridPane fx:id="finishedProductPeps" gridLinesVisible="true" layoutX="62.0" layoutY="367.0">
+                  <GridPane fx:id="finishedProductPeps" gridLinesVisible="true" layoutX="62.0" layoutY="367.0" style="-fx-background-color: #778899;">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="246.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="100.0" />
@@ -252,26 +333,26 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" prefWidth="98.0" text="MOD" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" prefWidth="98.0" text="CIF" GridPane.rowIndex="3" />
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="196.0" text="Total und terminadas" GridPane.rowIndex="4" />
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="206.0" text="Unds iniciadas y terminadas" GridPane.rowIndex="5" />
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="237.0" text="Costo total de producto terminado" GridPane.rowIndex="6" />
-                        <Label alignment="CENTER" prefWidth="98.0" text="IOPP" />
-                        <Label alignment="CENTER" layoutX="10.0" layoutY="77.0" prefWidth="98.0" text="MD" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="267.0" text="MOD" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="324.0" text="CIF" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="296.0" text="Total und terminadas" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="304.0" text="Unds iniciadas y terminadas" GridPane.rowIndex="5" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="279.0" text="Costo total de producto terminado" GridPane.rowIndex="6" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="272.0" text="IOPP" />
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="77.0" prefHeight="21.0" prefWidth="285.0" text="MD" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <Label layoutX="37.0" layoutY="311.0" text="Producto terminado">
+                  <Label layoutX="114.0" layoutY="331.0" text="Producto terminado">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="43.0" layoutY="569.0" text="Producto en proceso">
+                  <Label layoutX="66.0" layoutY="587.0" text="Producto en proceso">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <GridPane fx:id="inProcessProductPeps" gridLinesVisible="true" layoutX="65.0" layoutY="616.0">
+                  <GridPane fx:id="inProcessProductPeps" gridLinesVisible="true" layoutX="65.0" layoutY="627.0" style="-fx-background-color: #778899;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="161.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="83.0" minWidth="10.0" prefWidth="100.0" />
@@ -284,11 +365,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="152.0" text="Del proceso anterior" />
-                        <Label alignment="CENTER" prefWidth="98.0" text="MD" GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" prefWidth="98.0" text="MOD" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" prefWidth="98.0" text="CIF" GridPane.rowIndex="3" />
-                        <Label alignment="CENTER" prefWidth="98.0" text="Total IFPP" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="285.0" text="Del proceso anterior" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="273.0" text="MD" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="250.0" text="MOD" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="237.0" text="CIF" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="296.0" text="Total IFPP" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                   <Label layoutX="39.0" layoutY="817.0" text="Total costos asignados">
@@ -307,7 +388,7 @@
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <GridPane fx:id="unitaryCostPP" alignment="CENTER" gridLinesVisible="true" layoutX="672.0" layoutY="129.0">
+                  <GridPane fx:id="unitaryCostPP" alignment="CENTER" gridLinesVisible="true" layoutX="672.0" layoutY="129.0" style="-fx-background-color: #778899;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="160.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="100.0" />
@@ -320,14 +401,14 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Del proceso anterior" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="17.0" text="MD" GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="47.0" text="MOD" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="77.0" text="CIF" GridPane.rowIndex="3" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="107.0" text="Total costo por unidad" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="262.0" text="Del proceso anterior" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="17.0" prefHeight="21.0" prefWidth="283.0" text="MD" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="47.0" prefHeight="21.0" prefWidth="219.0" text="MOD" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="77.0" prefHeight="21.0" prefWidth="280.0" text="CIF" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="107.0" prefHeight="21.0" prefWidth="201.0" text="Total costo por unidad" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
-                  <GridPane fx:id="costAssignationPP" gridLinesVisible="true" layoutX="621.0" layoutY="354.0">
+                  <GridPane fx:id="costAssignationPP" gridLinesVisible="true" layoutX="621.0" layoutY="354.0" style="-fx-background-color: #778899;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="207.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="100.0" />
@@ -340,11 +421,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="162.0" text="IFPP (proceso anterior)" GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="165.0" text="MD" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="136.0" text="MOD" GridPane.rowIndex="3" />
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="157.0" text="CIF" GridPane.rowIndex="4" />
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="151.0" text="unidades terminadas" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="262.0" text="IFPP (proceso anterior)" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="342.0" text="MD" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="516.0" text="MOD" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="272.0" text="CIF" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="245.0" text="Unidades terminadas" />
                      </children>
                   </GridPane>
                   <Label layoutX="651.0" layoutY="551.0" text="Total costos asignados">
