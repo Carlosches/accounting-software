@@ -1,4 +1,6 @@
 package ui;
+import java.text.DecimalFormat;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -104,19 +106,29 @@ public class AccountingController {
     
 	private Process process;
 	
+	private boolean enter;
+	
+	private DecimalFormat format;
+	
 	@FXML
 	void initialize() {
 		process = new Process();
+		format = new DecimalFormat("#.000");
 	}
 	@FXML
+	void newProcess(ActionEvent event) {
+		
+	}
+	  
+	@FXML
 	void fillFlowButton(ActionEvent event) {
+		enter = false;
+		process = new Process();
 		boolean possible = true;
 		String ioPP = ioPPText.getText();
 		String ifPP = ifPPText.getText();
 		String st = started.getText();
 		String fi = finished.getText();
-		String pu = previousUnits.getText();
-		String sAF = startedAndFinished.getText();
 		String aCMD = addedCostMD.getText();
 		String aCMOD = addedCostMOD.getText();
 		String aCCIF = addedCostCIF.getText();
@@ -128,8 +140,6 @@ public class AccountingController {
 		int fPP = checkFields(ifPP);
 		int start = checkFields(st);
 		int finish = checkFields(fi);
-		int previous = checkFields(pu);
-		int startedFinished = checkFields(sAF);	
 		double addedCostMD = -1;
 		double addedCostMOD = -1;
 		double addedCostCIF = -1;
@@ -149,11 +159,11 @@ public class AccountingController {
 				ioTC = Double.parseDouble(vTC);
 		}catch(NumberFormatException e) { ioTC = -1;}
 		
-		if(!checkPercentages() || iPP == -1 || fPP == -1 || start == -1 || finish == -1 || previous == -1 || startedFinished == -1 || addedCostMD == -1 || addedCostMOD == -1 || addedCostCIF == -1)
+		if(!checkPercentages() || ioTC < 0 || iPP <0 || fPP <0 || start < 0 || finish < 0|| addedCostMD < 0 || addedCostMOD < 0|| addedCostCIF <0 )
 			possible = false;
 		
 		if(possible) {
-			process.setFlow(new PhysicalFlow(iPP, fPP, start, finish, previous, startedFinished));
+			process.setFlow(new PhysicalFlow(iPP, fPP, start, finish));
 			double tc = 0;
 			if(!transfCosts.getText().isEmpty()) {
 				tc = Double.parseDouble(transfCosts.getText());
@@ -177,24 +187,7 @@ public class AccountingController {
 				process.setIOPP(ioMD + ioMOD + ioCIF + ioTC);
 				process.getPeps();
 				process.getPP();
-				costsToBeAssigned.add(new Label(String.valueOf(process.getIOPP())), 1, 0);
-				costsToBeAssigned.add(new Label(String.valueOf(addedCostMD + addedCostMOD + addedCostCIF)), 1, 1);
-				costsToBeAssigned.add(new Label(String.valueOf(process.getTransferedCost())), 1, 2);
-				costsToBeAssigned.add(new Label(String.valueOf(addedCostMD + addedCostMOD + addedCostCIF + process.getIOPP() + process.getTransferedCost())), 1, 3);
-				for(int i = 0; i < 4; i++) {
-					for(int j = 0; j < 4; j++) {
-						prodEquivPeps.add(new Label(String.valueOf(process.getProduction().getPeps()[i][j])), j, i);
-					}
-				}
-				for(int i = 0; i < 3; i++) {
-					for(int j = 0; j < 4; j++) {
-						prodEquivPP.add(new Label(String.valueOf(process.getProduction().getPP()[i][j])), j, i);
-					}
-				}
-				double[] unit = process.calculateUnitaryCosts();
-				double[] peps = process.getAssignedCostsPeps();
-				double[] pp = process.getAssignedCostsPP();
-				showAssignedCosts(unit, peps, pp);
+				
 				
 			}else {
 				startedAndFinished.clear();
@@ -216,24 +209,73 @@ public class AccountingController {
 		}
 	}
 	
+	   @FXML
+	    void calculateProduction(ActionEvent event) {
+		 
+		   if(process.getFlow().isValid()) {
+			   enter = true;
+			   costsToBeAssigned.getChildren().clear();
+			   prodEquivPeps.getChildren().clear();
+			   costsToBeAssigned.setGridLinesVisible(true);
+			   prodEquivPeps.setGridLinesVisible(true);
+				   showEquivalentProduction();
+				 
+				   costsToBeAssigned.add(new Label(String.valueOf(format.format(process.getIOPP()))), 1, 0);
+					costsToBeAssigned.add(new Label(String.valueOf(format.format(process.getAddedCostMD() +process.getAddedCostMOD() + process.getAddedCostCIF() ))), 1, 1);
+					costsToBeAssigned.add(new Label(String.valueOf(format.format(process.getTransferedCost()))), 1, 2);
+					costsToBeAssigned.add(new Label(String.valueOf(format.format(process.getAddedCostMD() + process.getAddedCostMOD() + process.getAddedCostCIF() + process.getIOPP() + process.getTransferedCost()))), 1, 3);
+				
+		   }else {
+			   Alert alert = new Alert(AlertType.ERROR, "Please complete the physical flow");
+				alert.showAndWait();
+		   }
+	    }
+
+	    @FXML
+	    void allocateCosts(ActionEvent event) {
+	    	if(enter) {
+		    	double[] unit = process.calculateUnitaryCosts();
+				double[] peps = process.getAssignedCostsPeps();
+				double[] pp = process.getAssignedCostsPP();
+				showAssignedCosts(unit, peps, pp);
+	    	}else {
+	    		Alert alert = new Alert(AlertType.ERROR, "Please calculate the equivalent production");
+				alert.showAndWait();
+	    	}
+	    }
+	
+	  private void showEquivalentProduction() {
+		  
+		  for(int i = 0; i < 4; i++) {
+				for(int j = 0; j < 4; j++) {
+					prodEquivPeps.add(new Label(String.valueOf(format.format(process.getProduction().getPeps()[i][j]))), j, i);
+				}
+			}
+			for(int i = 0; i < 3; i++) {
+				for(int j = 0; j < 4; j++) {
+					prodEquivPP.add(new Label(String.valueOf(format.format(process.getProduction().getPP()[i][j]))), j, i);
+				}
+			}
+		}
+	    
 	private void showAssignedCosts(double[] unit, double[] peps, double[] pp) {
 		for (int i = 0; i < 5; i++) {
-			unitaryCostPeps.add(new Label(String.valueOf(unit[i])), 1, i);
+			unitaryCostPeps.add(new Label(String.valueOf(format.format(unit[i]))), 1, i);
 		}
 		for (int i = 0; i < 5; i++) {
-			unitaryCostPP.add(new Label(String.valueOf(unit[i+5])), 1, i);
+			unitaryCostPP.add(new Label(String.valueOf(format.format(unit[i+5]))), 1, i);
 		}
 		for(int i = 0; i < 7; i++) {
-			finishedProductPeps.add(new Label(String.valueOf(peps[i])), 1, i);
+			finishedProductPeps.add(new Label(String.valueOf(format.format(peps[i]))), 1, i);
 		}
 		for(int i = 0; i < 6; i++) {
-			inProcessProductPeps.add(new Label(String.valueOf(peps[i+7])), 1, i);
+			inProcessProductPeps.add(new Label(String.valueOf(format.format(peps[i+7]))), 1, i);
 		}
-		totalAssignedCostsPeps.setText(String.valueOf(peps[peps.length-1]));
+		totalAssignedCostsPeps.setText(String.valueOf(format.format(peps[peps.length-1])));
 		for(int i = 0; i < 5; i++) {
-			costAssignationPP.add(new Label(String.valueOf(pp[i])), 1, i);
+			costAssignationPP.add(new Label(String.valueOf(format.format(pp[i]))), 1, i);
 		}
-		totalAssignedCostsPP.setText(String.valueOf(pp[pp.length-1]));
+		totalAssignedCostsPP.setText(String.valueOf(format.format(pp[pp.length-1])));
 	}
 	
 	private boolean checkTC() {
@@ -272,12 +314,12 @@ public class AccountingController {
 	
 	private boolean checkPercentages() {
 		boolean possible = true;
-		possible = checkSinglePercentage(ioPPMDPercent);
-		possible = checkSinglePercentage(ioPPMODPercent);
-		possible = checkSinglePercentage(ioPPCIFPercent);
-		possible = checkSinglePercentage(ifPPMDPercent);
-		possible = checkSinglePercentage(ifPPMODPercent);
-		possible = checkSinglePercentage(ifPPCIFPercent);
+		possible = possible && checkSinglePercentage(ioPPMDPercent);
+		possible = possible && checkSinglePercentage(ioPPMODPercent);
+		possible = possible && checkSinglePercentage(ioPPCIFPercent);
+		possible = possible && checkSinglePercentage(ifPPMDPercent);
+		possible = possible && checkSinglePercentage(ifPPMODPercent);
+		possible = possible && checkSinglePercentage(ifPPCIFPercent);
 		return possible;
 	}
 	

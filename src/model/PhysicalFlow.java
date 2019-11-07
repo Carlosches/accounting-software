@@ -9,62 +9,69 @@ public class PhysicalFlow {
 	private int finishedUnits;
 	private int previousUnits;
 	private int startedAndFinishedUnits;
-		
+	private boolean valid;
 	/**
 	 * @param iOPP
 	 * @param iFPP
 	 * @param started
 	 */
-	public PhysicalFlow(int iOPP, int iFPP, int st, int finished, int previous, int startedFinished) {
+	public PhysicalFlow(int iOPP, int iFPP, int st, int finished) {
 		
-		if(iOPP!=-1)
+		if(iOPP!=0)
 			this.iOPP = new IOProductProcess(iOPP);
-		if(iFPP!=-1)
+		if(iFPP!=0)
 			this.iFPP = new IFProductProcess(iFPP);
-		if(st != -1)
+		if(st != 0)
 			started = new Started(st);
-		this.finishedUnits = finished;
-		this.previousUnits = previous;
-		this.startedAndFinishedUnits = startedFinished;
+		if(finished != 0)
+			this.finishedUnits = finished;
+		else
+			this.finishedUnits = -1
+		;
 	}
 	
 	public boolean check() {
-		boolean valid = false;
-		if(iOPP!=null && started != null && finishedUnits!=-1 ) {
-			int unit = iOPP.getUnits()+started.getUnits()-finishedUnits;
-			iFPP = new IFProductProcess(unit);
-			previousUnits = iOPP.getUnits();
-			startedAndFinishedUnits = finishedUnits - previousUnits;
-			valid = true;
-		}else if(iOPP!=null && started != null && iFPP!=null ) {
-			finishedUnits = iOPP.getUnits()+started.getUnits()-iFPP.getUnits();
-			previousUnits = iOPP.getUnits();
-			startedAndFinishedUnits = finishedUnits - previousUnits;
-			valid = true;
-		}else if(iFPP!=null && started != null && finishedUnits!=-1 ) {
-			int unit = iFPP.getUnits()-started.getUnits()+finishedUnits;
-			iOPP = new IOProductProcess(unit);
-			previousUnits = unit;
-			startedAndFinishedUnits = finishedUnits - previousUnits;
-			valid = true;
-		}else if(iFPP != null && iOPP!=null && finishedUnits!=-1 ) {
-			int unit = iFPP.getUnits()-iOPP.getUnits()+finishedUnits;
-			started = new Started(unit);
-			previousUnits = iOPP.getUnits();
-			startedAndFinishedUnits = finishedUnits - previousUnits;
-			valid = true;
-		}else if(startedAndFinishedUnits != -1 && iOPP!=null && started != null) {
-			previousUnits = iOPP.getUnits();
-			finishedUnits = previousUnits + startedAndFinishedUnits;
-			iFPP = new IFProductProcess(iOPP.getUnits() + started.getUnits() - finishedUnits);
-			valid = true;
-		}
-	
+		 valid = false;
+		 if(iFPP != null && iOPP!=null && started != null && finishedUnits!=-1 ) {
+			 valid = true;
+			 previousUnits = iOPP.getUnits();
+				startedAndFinishedUnits = finishedUnits-previousUnits;
+		 }
+		 else if(iFPP == null && iOPP!=null && started != null && finishedUnits!=-1 ) {
+				int unit = iOPP.getUnits()+started.getUnits()-finishedUnits;
+				iFPP = new IFProductProcess(unit);
+				valid = true;
+				previousUnits = iOPP.getUnits();
+				startedAndFinishedUnits = finishedUnits-previousUnits;
+			}else if(iOPP == null && iFPP!=null && started != null && finishedUnits!=-1 ) {
+				int unit = iFPP.getUnits()-started.getUnits()+finishedUnits;
+				iOPP = new IOProductProcess(unit);
+				valid = true;
+				previousUnits = iOPP.getUnits();
+				startedAndFinishedUnits = finishedUnits-previousUnits;
+			}else if(iFPP != null && iOPP!=null && started == null && finishedUnits!=-1 ) {
+				int unit = iFPP.getUnits()-iOPP.getUnits()+finishedUnits;
+				started = new Started(unit);
+				valid = true;
+				previousUnits = iOPP.getUnits();
+				startedAndFinishedUnits = finishedUnits-previousUnits;
+			}else if(iFPP != null && iOPP!=null && started != null && finishedUnits==-1 ) {
+				int unit = iOPP.getUnits()+started.getUnits()-iFPP.getUnits();
+				finishedUnits = unit;
+				valid = true;
+				previousUnits = iOPP.getUnits();
+				startedAndFinishedUnits = finishedUnits-previousUnits;
+			}
+
+			
 		if(valid && (iOPP.getUnits() < 0 || iFPP.getUnits() < 0 || started.getUnits() < 0 || finishedUnits < 0 || previousUnits < 0 || startedAndFinishedUnits < 0))
 			valid = false;
 		return valid;
 	}	
 	
+	public boolean isValid() {
+		return valid;
+	}
 	/**
 	 * @return the iOPP
 	 */

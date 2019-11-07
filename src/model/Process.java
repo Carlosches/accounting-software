@@ -102,6 +102,31 @@ public class Process {
 		return arr;
 	}
 	
+	
+	/**
+	 * @return the addedCostMD
+	 */
+	public double getAddedCostMD() {
+		return addedCostMD;
+	}
+	/**
+	 * @return the addedCostMOD
+	 */
+	public double getAddedCostMOD() {
+		return addedCostMOD;
+	}
+	/**
+	 * @return the addedCostCIF
+	 */
+	public double getAddedCostCIF() {
+		return addedCostCIF;
+	}
+	/**
+	 * @return the ioPP
+	 */
+	public double getIoPP() {
+		return ioPP;
+	}
 	public double[] getAssignedCostsPeps() {
 		return costs.calculateAssignedCostsPeps(production.getPeps(), ioPP);
 	}
